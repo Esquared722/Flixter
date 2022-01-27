@@ -3,17 +3,12 @@ package com.example.flixter;
 import android.os.Bundle;
 
 import com.example.flixter.adapters.MovieAdapter;
-import com.example.flixter.models.Movie;
-
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
-
-    List<Movie> movies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
