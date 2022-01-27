@@ -1,6 +1,7 @@
 package com.example.flixter.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,33 +9,72 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.R;
 import com.example.flixter.models.Movie;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Headers;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    public static final String TAG = "MovieAdapter";
     Context context;
     List<Movie> movies;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public MovieAdapter(Context context) {
         this.context = context;
-        this.movies = movies;
+        getMovies();
+    }
+
+    // fetches movies using AsyncHttpClient library
+    private void getMovies() {
+        movies = new ArrayList<>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JsonHttpResponseHandler.JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray results = jsonObject.getJSONArray("results");
+                    Log.i(TAG, "Results " + results.toString());
+                    movies.addAll(Movie.fromJsonArray(results));
+                    notifyDataSetChanged();
+                    Log.i(TAG, "Movies " + movies.size());
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception", e);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "onFailure");
+            }
+        });
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("MovieAdapter", "onCreateViewHolder");
         View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
         return new ViewHolder(movieView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d("MovieAdapter", "onBindViewHolder: " + position);
         Movie movie = movies.get(position);
         holder.bind(movie);
 
