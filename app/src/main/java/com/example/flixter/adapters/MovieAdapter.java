@@ -60,7 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.d(TAG, "onFailure");
+                Log.d(TAG, "onFailure: " + statusCode + ", " + response);
             }
         });
     }
@@ -105,12 +105,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             // then imageUrl = back drop image
             // else imageUrl = poster image
             String imageUrl;
-            imageUrl = context
-                            .getResources()
-                            .getConfiguration()
-                            .orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.getBackdropPath()
-                            : movie.getPosterPath();
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            imageUrl = (context
+                    .getResources()
+                    .getConfiguration()
+                    .orientation == Configuration.ORIENTATION_LANDSCAPE) ?
+                    movie.getBackdropPath()
+                    : movie.getPosterPath();
+
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_baseline_image_24)
+                    .error(R.drawable.ic_baseline_image_not_supported_24)
+                    .dontAnimate()
+                    .into(ivPoster);
         }
     }
 }

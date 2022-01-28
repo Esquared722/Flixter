@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/drawable-land/ic_baseline_image_24.xml" value="0.49375" />
+        <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/drawable/ic_baseline_image_not_supported_24.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/drawable/placeholder.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/layout-land/item_movie.xml" value="0.33" />
         <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/layout/activity_main.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/Eric/Desktop/android_studio_projects/Flixter/app/src/main/res/layout/item_movie.xml" value="0.5" />
