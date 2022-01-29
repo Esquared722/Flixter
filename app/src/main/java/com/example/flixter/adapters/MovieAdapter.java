@@ -115,6 +115,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             Glide
                     .with(context)
                     .load(imageUrl)
+                    .fitCenter()
                     .placeholder(R.drawable.ic_baseline_image_24)
                     .error(R.drawable.ic_baseline_image_not_supported_24)
                     .dontAnimate()

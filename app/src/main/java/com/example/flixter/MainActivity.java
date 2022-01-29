@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.flixter.adapters.MovieAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,5 +22,12 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setAdapter(movieAdapter);
 
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager layoutManager = (LinearLayoutManager) rvMovies.getLayoutManager();
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvMovies.getContext(),
+                layoutManager.getOrientation());
+
+        rvMovies.addItemDecoration(dividerItemDecoration);
     }
 }
