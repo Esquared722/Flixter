@@ -25,6 +25,8 @@
         android:layout_toEndOf="@+id/ivPoster"
         android:textSize="24sp"
         tools:text="Spider-Man: No Way Home"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textAppearance="?textAppearanceTitleMedium"/>
 
     <TextView
