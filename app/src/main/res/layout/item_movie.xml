@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp">
@@ -23,12 +24,12 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textSize="24sp"
-        tools:text="Spider-Man: No Way Home"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textAppearance="?textAppearanceTitleMedium"
         android:textColor="@color/white"
-        android:textAppearance="?textAppearanceTitleMedium"/>
+        android:textSize="24sp"
+        tools:text="Spider-Man: No Way Home" />
 
     <TextView
         android:id="@+id/tvOverview"
@@ -40,8 +41,8 @@
         android:layout_toEndOf="@+id/ivPoster"
         android:ellipsize="end"
         android:maxLines="5"
-        android:textColor="@color/white"
         android:textAppearance="?textAppearanceBody1"
+        android:textColor="@color/white"
         tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
 
 </RelativeLayout>
