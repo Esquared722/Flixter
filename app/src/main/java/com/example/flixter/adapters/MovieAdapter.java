@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import okhttp3.Headers;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -111,11 +112,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .orientation == Configuration.ORIENTATION_LANDSCAPE) ?
                     movie.getBackdropPath()
                     : movie.getPosterPath();
-
+            final int RADIUS = 30;
+            final int MARGIN = 10;
             Glide
                     .with(context)
                     .load(imageUrl)
                     .fitCenter()
+                    .transform(new RoundedCornersTransformation(RADIUS, MARGIN))
                     //.skipMemoryCache(true)
                     //.diskCacheStrategy(DiskCacheStrategy.NONE)
                     .placeholder(R.drawable.ic_baseline_image_24)

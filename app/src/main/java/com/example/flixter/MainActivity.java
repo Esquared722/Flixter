@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = (LinearLayoutManager) rvMovies.getLayoutManager();
 
+        assert layoutManager != null;
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvMovies.getContext(),
                 layoutManager.getOrientation());
 
