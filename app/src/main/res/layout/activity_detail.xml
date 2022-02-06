@@ -1,49 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background"
-    tools:context=".DetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/player"
+    <data>
+        <variable
+            name="movie"
+            type="com.example.flixter.models.Movie" />
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background"
+        tools:context=".DetailActivity">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:transitionName="title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:text="TextView"
-        android:textAppearance="?textAppearanceTitleMedium"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        tools:text="Spider-Man: No Way Home" />
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:numStars="10"
-        android:rating="8.4" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:transitionName="title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="10dp"
+            android:text="@{movie.title}"
+            android:textAppearance="?textAppearanceTitleMedium"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            tools:text="Spider-Man: No Way Home" />
 
-    <TextView
-        android:id="@+id/tvOverview"
-        android:transitionName="overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAppearance="?textAppearanceBody1"
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:textColor="@color/white"
-        tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
-</LinearLayout>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:numStars="10"
+            android:rating="@{(float) movie.rating}" />
+
+        <TextView
+            android:id="@+id/tvOverview"
+            android:transitionName="overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{movie.overview}"
+            android:textAppearance="?textAppearanceBody1"
+            android:layout_marginTop="10dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/white"
+            tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
+    </LinearLayout>
+</layout>

@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/ivPoster"
-        android:layout_width="124dp"
-        android:layout_height="187dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        tools:srcCompat="@tools:sample/avatars" />
+    <data>
+        <variable
+            name="movie"
+            type="com.example.flixter.models.Movie" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:transitionName="title"
-        android:layout_width="wrap_content"
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivPoster"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAppearance="?textAppearanceTitleMedium"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        tools:text="Spider-Man: No Way Home" />
+        android:layout_margin="5dp">
 
-    <TextView
-        android:id="@+id/tvOverview"
-        android:transitionName="overview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivPoster"
-        android:ellipsize="end"
-        android:maxLines="5"
-        android:textAppearance="?textAppearanceBody1"
-        android:textColor="@color/white"
-        tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
+        <ImageView
+            android:id="@+id/ivPoster"
+            android:layout_width="124dp"
+            android:layout_height="187dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:transitionName="title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/ivPoster"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?textAppearanceTitleMedium"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            tools:text="@{movie.title}" />
+
+        <TextView
+            android:id="@+id/tvOverview"
+            android:transitionName="overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/ivPoster"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/white"
+            tools:text="@{movie.overview}" />
+
+    </RelativeLayout>
+</layout>

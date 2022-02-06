@@ -8,16 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.R;
+import com.example.flixter.databinding.ItemMovieBinding;
 import com.example.flixter.models.Movie;
 
 import org.json.JSONArray;
@@ -95,26 +92,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        RelativeLayout container;
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivPoster;
+        final ItemMovieBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            container = itemView.findViewById(R.id.container);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
+            binding = ItemMovieBinding.bind(itemView);
         }
 
         public void bind(Movie movie) {
-            tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
             // if phone is in landscape
             // then imageUrl = back drop image
             // else imageUrl = poster image
             String imageUrl;
+            binding.setMovie(movie);
             imageUrl = (context
                     .getResources()
                     .getConfiguration()
@@ -126,25 +116,26 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .with(context)
                     .load(imageUrl)
                     .fitCenter()
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.skipMemoryCache(true)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
                     .placeholder(R.drawable.ic_baseline_image_24)
                     .error(R.drawable.ic_baseline_image_not_supported_24)
                     .dontAnimate()
-                    .into(ivPoster);
+                    .into(binding.ivPoster);
 
-            container.setOnClickListener(new View.OnClickListener() {
+            binding.container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
-                    Pair<View, String> p1 = Pair.create(tvTitle, "title");
-                    Pair<View, String> p2 = Pair.create(tvOverview, "overview");
+                    Pair<View, String> p1 = Pair.create(binding.tvTitle, "title");
+                    Pair<View, String> p2 = Pair.create(binding.tvOverview, "overview");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation((Activity) context, p1, p2);
                     context.startActivity(i, options.toBundle());
                 }
             });
+            binding.executePendingBindings();
         }
     }
 }
