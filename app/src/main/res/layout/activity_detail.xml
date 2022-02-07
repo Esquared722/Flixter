@@ -26,23 +26,47 @@
             android:transitionName="title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@{movie.title}"
             android:textAppearance="?textAppearanceTitleMedium"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            tools:text="Spider-Man: No Way Home" />
+            android:textSize="30sp"/>
 
         <RatingBar
             android:id="@+id/ratingBar"
             style="@style/Widget.AppCompat.RatingBar.Indicator"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
+            android:paddingEnd="0dp"
             android:numStars="10"
             android:rating="@{(float) movie.rating}" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text='@{movie.releaseDate}'
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:text="2021-12-15" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="@{movie.genres}" />
 
         <TextView
             android:id="@+id/tvOverview"
@@ -51,9 +75,11 @@
             android:layout_height="wrap_content"
             android:text="@{movie.overview}"
             android:textAppearance="?textAppearanceBody1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@color/white"
             tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
+
     </LinearLayout>
 </layout>
